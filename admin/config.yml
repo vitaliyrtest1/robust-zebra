@@ -1,0 +1,740 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: images
+public_folder: /images
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: _config.yml
+        fields:
+          - widget: string
+            name: title
+            label: Title
+            required: true
+            hint: Site title
+          - widget: hidden
+            name: baseurl
+            label: Base URL
+            required: false
+            hint: Serve the website from the given base URL
+          - widget: hidden
+            name: permalink
+            label: Permalink
+            required: false
+            default: '/posts/:slug:output_ext'
+            hint: 'The output path for your pages, posts, or collections.'
+          - widget: select
+            name: palette
+            label: Color Palette
+            required: false
+            options:
+              - cyan
+              - purple
+          - widget: hidden
+            name: palettes
+            label: Palettes
+            required: false
+          - widget: hidden
+            name: sass
+            label: Sass
+            required: false
+          - widget: hidden
+            name: plugins
+            label: Plugins
+            required: false
+          - widget: hidden
+            name: exclude
+            label: Exclude
+            required: false
+            hint: Exclude directories and/or files from the conversion.
+  - name: menu
+    label: Menu Configuration
+    files:
+      - name: menu
+        label: Menu Configuration
+        file: _data/menu.yml
+        fields:
+          - widget: list
+            name: actions
+            label: Action Buttons
+            required: false
+            hint: List of action buttons
+            fields:
+              - widget: string
+                name: label
+                label: Label
+                required: false
+              - widget: string
+                name: url
+                label: URL
+                required: false
+              - widget: boolean
+                name: is_scrolly
+                label: IS Scrolly
+                required: false
+                default: false
+              - widget: boolean
+                name: is_primary
+                label: Is Primary
+                required: false
+                default: false
+  - name: footer
+    label: Footer Configuration
+    files:
+      - name: footer
+        label: Footer Configuration
+        file: _data/footer.yml
+        fields:
+          - widget: object
+            name: contact
+            label: Contact
+            required: false
+            hint: The contact section of the footer
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: The contact section title
+              - widget: markdown
+                name: subtitle
+                label: Subtitle
+                required: false
+                hint: The contact section subtitle
+          - widget: object
+            name: links_col1
+            label: First links column
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: Column title
+              - widget: list
+                name: links
+                label: Links
+                required: false
+                hint: Column links
+                fields:
+                  - widget: string
+                    name: text
+                    label: Link text
+                    required: false
+                  - widget: string
+                    name: link
+                    label: URL
+                    required: false
+          - widget: object
+            name: links_col2
+            label: Second links column
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: Column title
+              - widget: list
+                name: links
+                label: Links
+                required: false
+                hint: Column links
+                fields:
+                  - widget: string
+                    name: text
+                    label: Link text
+                    required: false
+                  - widget: string
+                    name: link
+                    label: URL
+                    required: false
+          - widget: object
+            name: links_col3
+            label: Third links column
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: Column title
+              - widget: list
+                name: links
+                label: Links
+                required: false
+                hint: Column links
+                fields:
+                  - widget: string
+                    name: text
+                    label: Link text
+                    required: false
+                  - widget: string
+                    name: link
+                    label: URL
+                    required: false
+          - widget: object
+            name: links_col4
+            label: Fourth links column
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: Column title
+              - widget: list
+                name: links
+                label: Links
+                required: false
+                hint: Column links
+                fields:
+                  - widget: string
+                    name: text
+                    label: Link text
+                    required: false
+                  - widget: string
+                    name: link
+                    label: URL
+                    required: false
+          - widget: list
+            name: social_links
+            label: Social Links
+            required: false
+            hint: Contact Methods
+            fields:
+              - widget: string
+                name: text
+                label: Contact method description
+                required: false
+              - widget: string
+                name: icon
+                label: Icon
+                required: false
+                hint: Font Awesome Icon
+              - widget: string
+                name: link
+                label: URL
+                required: false
+          - widget: string
+            name: copyright
+            label: Copyright
+            required: false
+            hint: Copyright displayed at the bottom of the page
+          - widget: list
+            name: links
+            label: Copyright Links
+            required: false
+            hint: >-
+              A list of links displayed in the footer, next to the copyright
+              text.
+            fields:
+              - widget: string
+                name: text
+                label: Link text
+                required: false
+              - widget: string
+                name: url
+                label: URL
+                required: false
+              - widget: boolean
+                name: new_window
+                label: Open in new window
+                required: false
+                default: true
+  - name: home
+    label: Home
+    files:
+      - name: home
+        label: Home
+        file: index.md
+        fields:
+          - widget: string
+            name: title
+            label: Title
+            required: false
+            hint: Page title
+          - widget: object
+            name: banner
+            label: Banner
+            required: false
+            hint: Home page banner
+            fields:
+              - widget: list
+                name: items
+                label: Banner sections
+                required: false
+                hint: Sections displayed on the left side of the banner
+                fields:
+                  - widget: string
+                    name: title
+                    label: Section Title
+                    required: false
+                    hint: Banner Section Title
+                  - widget: markdown
+                    name: subtitle
+                    label: Banner Section Subtitle
+                    required: false
+                    hint: The text that appears below the banner section title
+                  - widget: select
+                    name: accent_color
+                    label: Banner Item Color
+                    required: true
+                    default: accent1
+                    options:
+                      - accent1
+                      - accent2
+                      - accent3
+                  - widget: object
+                    name: action
+                    label: Banner Section Action
+                    required: false
+                    hint: The action button for the banner section
+                    fields:
+                      - widget: string
+                        name: label
+                        label: Label
+                        required: false
+                      - widget: string
+                        name: url
+                        label: URL
+                        required: false
+                      - widget: boolean
+                        name: is_scrolly
+                        label: Is Scrolly
+                        required: false
+                        default: false
+                      - widget: boolean
+                        name: is_primary
+                        label: Is Primary
+                        required: false
+                        default: true
+              - widget: list
+                name: slider
+                label: Banner Image Slider
+                required: false
+                hint: List of images to be displayed in the banner image slider
+                fields:
+                  - widget: image
+                    name: img_path
+                    label: Image
+                    required: false
+                  - widget: string
+                    name: img_title
+                    label: Image Title
+                    required: true
+                    default: image
+                    hint: The title of the image (only used in the CMS)
+                  - widget: string
+                    name: data_position
+                    label: Image Data Position
+                    required: false
+                    hint: 'Example: top left'
+          - widget: boolean
+            name: show_contact
+            label: Show Contact Section
+            required: false
+            default: false
+            hint: Displays the contact section at the bottom of the page
+          - widget: list
+            name: sections
+            label: Sections
+            required: false
+            hint: Home Sections
+            types:
+              - name: features
+                widget: object
+                label: Features
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: true
+                    default: Features Section
+                    hint: >-
+                      Section title (Also used bt the CMS, even if it is not
+                      displayed on the page)
+                  - widget: hidden
+                    name: component
+                    label: Component
+                    required: true
+                    default: features.html
+                  - widget: markdown
+                    name: subtitle
+                    label: Subtitle
+                    required: false
+                    hint: Text below the section title
+                  - widget: list
+                    name: features
+                    label: Features List
+                    required: false
+                    hint: The list of features
+                    fields:
+                      - widget: string
+                        name: title
+                        label: Feature Title
+                        required: false
+                      - widget: markdown
+                        name: subtitle
+                        label: Feature Subtitle
+                        required: false
+                      - widget: string
+                        name: icon
+                        label: Feature Icon
+                        required: false
+                        hint: Font Awesome Icon
+                      - widget: select
+                        name: icon_accent_color
+                        label: Icon Accent Color
+                        required: false
+                        options:
+                          - accent1
+                          - accent2
+                          - accent3
+                          - accent4
+                  - widget: hidden
+                    name: type
+                    label: Reference Type Name
+                    required: true
+                    hint: >-
+                      Name of the Stackbit object model, used by fields of type
+                      reference
+                    default: features
+              - name: carousel
+                widget: object
+                label: Carousel
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: true
+                    default: Carousel Title
+                    hint: >-
+                      Section title (Also used bt the CMS, even if it is not
+                      displayed on the page)
+                  - widget: select
+                    name: background_accent_color
+                    label: Background Accent Color
+                    required: false
+                    hint: Sets the color used for the section background
+                    options:
+                      - accent1
+                      - accent2
+                      - accent3
+                      - accent4
+                  - widget: hidden
+                    name: component
+                    label: Component
+                    required: true
+                    default: carousel.html
+                  - widget: hidden
+                    name: type
+                    label: Reference Type Name
+                    required: true
+                    hint: >-
+                      Name of the Stackbit object model, used by fields of type
+                      reference
+                    default: carousel
+              - name: spotlight
+                widget: object
+                label: Spotlight
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: true
+                    default: Spotlight Section
+                    hint: >-
+                      Section title (Also used bt the CMS, even if it is not
+                      displayed on the page)
+                  - widget: hidden
+                    name: component
+                    label: Component
+                    required: true
+                    default: spotlight.html
+                  - widget: markdown
+                    name: subtitle
+                    label: Spotlight Section Subtitle
+                    required: false
+                  - widget: hidden
+                    name: type
+                    label: Reference Type Name
+                    required: true
+                    hint: >-
+                      Name of the Stackbit object model, used by fields of type
+                      reference
+                    default: spotlight
+          - widget: object
+            name: menus
+            label: Home Menus
+            required: false
+            hint: Which menus should this page show up in
+            fields:
+              - widget: object
+                name: main
+                label: Main menu item
+                required: false
+                hint: Main menu item for this page
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: false
+                    hint: The title of the menu item
+                  - widget: number
+                    name: weight
+                    label: Weight
+                    required: false
+                    hint: Position for sorting
+                    valueType: int
+                  - widget: string
+                    name: identifier
+                    label: Identifier
+                    required: false
+                    hint: >-
+                      The identifier of a menu item could be used as a parent
+                      menu of another menu item
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: home
+  - name: page
+    label: Pages
+    folder: /
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Page Title
+        required: true
+      - widget: markdown
+        name: subtitle
+        label: Page Subtitle
+        required: false
+        hint: Appears below the page title
+      - widget: image
+        name: content_img_path
+        label: Content Image
+        required: false
+      - widget: object
+        name: home_sections
+        label: Home Sections
+        required: false
+        hint: If page is to be featured in the home page carousel or spotlights
+        fields:
+          - widget: object
+            name: spotlight
+            label: Spotlight
+            required: false
+            hint: Home page spotlight
+            fields:
+              - widget: boolean
+                name: enabled
+                label: Enabled
+                required: false
+                default: false
+              - widget: object
+                name: image
+                label: Home Spotlight Image
+                required: false
+                fields:
+                  - widget: image
+                    name: url
+                    label: Image
+                    required: false
+                  - widget: string
+                    name: data_position
+                    label: Data Position
+                    required: false
+                    hint: 'example: left'
+              - widget: string
+                name: title
+                label: Home Spotlight Title
+                required: false
+              - widget: string
+                name: excerpt
+                label: Home Spotlight Excerpt
+                required: false
+                hint: Excerpt to bedisplayed in the home spotlight
+              - widget: number
+                name: weight
+                label: Spotlight Weight
+                required: false
+                hint: The index of the spotlight in home spotlights
+                valueType: int
+          - widget: object
+            name: carousel
+            label: Carousel
+            required: false
+            hint: Home page Carousel
+            fields:
+              - widget: boolean
+                name: enabled
+                label: Enabled
+                required: false
+                default: false
+              - widget: object
+                name: image
+                label: Home Carousel Image
+                required: false
+                fields:
+                  - widget: image
+                    name: url
+                    label: Image
+                    required: false
+                  - widget: string
+                    name: data_position
+                    label: Data Position
+                    required: false
+                    hint: 'example: left'
+              - widget: string
+                name: title
+                label: Carousel Section Title
+                required: false
+              - widget: markdown
+                name: subtitle
+                label: Carousel Section Subtitle
+                required: false
+                hint: Text below the section title
+              - widget: number
+                name: weight
+                label: Carousel Weight
+                required: false
+                hint: The index of the carousel section
+                valueType: int
+      - widget: object
+        name: menus
+        label: Page Menus
+        required: false
+        hint: Which menus should this page show up in
+        fields:
+          - widget: object
+            name: main
+            label: Main menu item
+            required: false
+            hint: Main menu item for this page
+            fields:
+              - widget: string
+                name: title
+                label: Title
+                required: false
+                hint: The title of the menu item
+              - widget: number
+                name: weight
+                label: Weight
+                required: false
+                hint: Position for sorting
+                valueType: int
+              - widget: string
+                name: identifier
+                label: Identifier
+                required: false
+                hint: >-
+                  The identifier of a menu item could be used as a parent menu
+                  of another menu item
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: page
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: page
+  - name: elements
+    label: Elements
+    files:
+      - name: elements
+        label: Elements
+        file: elements.md
+        fields:
+          - widget: string
+            name: title
+            label: Title
+            required: false
+          - widget: markdown
+            name: subtitle
+            label: Subtitle
+            required: false
+          - widget: object
+            name: menus
+            label: Elements Menus
+            required: false
+            hint: Which menus should this page show up in
+            fields:
+              - widget: object
+                name: main
+                label: Main menu item
+                required: false
+                hint: Main menu item for this page
+                fields:
+                  - widget: string
+                    name: title
+                    label: Title
+                    required: false
+                    hint: The title of the menu item
+                  - widget: number
+                    name: weight
+                    label: Weight
+                    required: false
+                    hint: Position for sorting
+                    valueType: int
+                  - widget: string
+                    name: identifier
+                    label: Identifier
+                    required: false
+                    hint: >-
+                      The identifier of a menu item could be used as a parent
+                      menu of another menu item
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: elements
+  - name: site_menus
+    label: Site Menus
+    files:
+      - name: site_menus
+        label: Site Menus
+        file: _data/menus.yml
+        fields:
+          - widget: list
+            name: main
+            label: Main menu
+            required: false
+            hint: List of items for Main menu
+            fields:
+              - widget: string
+                name: identifier
+                label: Identifier
+                required: true
+                hint: >-
+                  The identifier of a menu item could be used as a parent menu
+                  of another menu item
+              - widget: string
+                name: title
+                label: Title
+                required: true
+                hint: The title of the menu item
+              - widget: string
+                name: url
+                label: URL
+                required: true
+                hint: The URL the menu item links to
+              - widget: number
+                name: weight
+                label: Weight
+                required: false
+                hint: Position for sorting
+                valueType: int
